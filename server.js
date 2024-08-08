@@ -11,12 +11,11 @@ mongoose.connect(process.env.MONGO_URL)
 .then(() => console.log('Database connected'))
 .catch((err) => console.log('Database not connected', err))
 
-App.use(
-    cors({
-        credentials: true, 
-        origin: 'http://localhost:3000'
-    })
-); 
+const corsOptions = {
+    origin: ["https://test-frontend-beryl.vercel.app", "http://localhost:3000"], // Replace with your client’s domain
+    credentials: true,  // This allows cookies to be sent from the client
+};
+App.use(cors(corsOptions)); 
 App.use(Express.json())
 App.use(cookieParser())
 App.use(Express.urlencoded({extended: false}))

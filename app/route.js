@@ -2,12 +2,7 @@ const Express = require('express')
 const App = Express();
 const cors = require('cors');
 
-App.use(
-    cors({
-        credentials: true, 
-        origin: 'http://localhost:3000'
-    })
-);
+App.use(cors());
 
 module.exports = function (app) {
     require('./routes/test.route')(app);
