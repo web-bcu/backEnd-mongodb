@@ -60,7 +60,7 @@ module.exports = {
                     name: user.name,
                     avatar: user.avatar
                 }
-                jwt.sign(payload, process.env.JWT_SECRET, {expiresIn: 1000}, (err, token) => {
+                jwt.sign(payload,"nguyenvietan131024*0949521462**" , {expiresIn: 1000}, (err, token) => {
                     if (err) throw err;
                     return res.cookie('token', token).json(user)
                 })
