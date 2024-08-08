@@ -60,9 +60,10 @@ module.exports = {
                     name: user.name,
                     avatar: user.avatar
                 }
-                jwt.sign(payload,"nguyenvietan131024*0949521462**" , {expiresIn: 1000}, (err, token) => {
+                jwt.sign(payload, "nguyenvietan131024*0949521462", {expiresIn: 1000}, (err, token) => {
                     if (err) throw err;
-                    return res.cookie('token', token).json(user)
+                    // return res.cookie('token', token).json(user)
+                    return res.json({token: token})
                 })
             }
 
@@ -90,18 +91,23 @@ module.exports = {
     },
 
     getProfile: function (req, res) {
-        const {token} = req.cookies;
-        // const token = req.header('Authorization')?.split(' ')[1];
-        if (token) {
-            jwt.verify(token, "nguyenvietan131024*0949521462**", {}, (err, user) => {
-                if (err) {
-                    return res.json({error: "token expired"});
-                } else {
-                    return res.json({user: user});
-                }
-            })
-        } else {
-            return res.json({message: "No token found"})
+        try {
+            const token = req.headers["authorization"];
+            
+            if (token) {
+                jwt.verify(token, "nguyenvietan131024*0949521462", {}, (err, user) => {
+                    if (err) {
+                        return res.json({error: "token expired"});
+                    } else {
+                        return res.json({user: user});
+                    }
+                })
+            } else {
+                return res.json({message: "No token found"})
+            }
+        } catch (error) {
+            console.log(error)
+            return res.status(400).json({error: "Something went wrong"})
         }
     }
 }
