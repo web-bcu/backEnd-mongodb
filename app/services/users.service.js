@@ -91,6 +91,7 @@ module.exports = {
 
     getProfile: function (req, res) {
         const {token} = req.cookies;
+        // const token = req.header('Authorization')?.split(' ')[1];
         if (token) {
             jwt.verify(token, "nguyenvietan131024*0949521462**", {}, (err, user) => {
                 if (err) {

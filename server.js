@@ -3,6 +3,7 @@ const dotenv = require('dotenv').config()
 const cors = require('cors');
 const {mongoose} = require('mongoose');
 const cookieParser = require('cookie-parser');
+let MethodOverride = require('method-override');
 
 const App = Express();
 const port = 8000;
@@ -18,7 +19,8 @@ const corsOptions = {
 App.use(cors(corsOptions)); 
 App.use(Express.json())
 App.use(cookieParser())
-App.use(Express.urlencoded({extended: false}))
+// App.use(Express.urlencoded({extended: false}))
+App.use(MethodOverride('X-HTTP-Method-Override'));
 
 require('./app/route')(App);
 
