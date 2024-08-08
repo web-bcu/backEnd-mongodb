@@ -92,7 +92,7 @@ module.exports = {
     getProfile: function (req, res) {
         const {token} = req.cookies;
         if (token) {
-            jwt.verify(token, process.env.JWT_SECRET, {}, (err, user) => {
+            jwt.verify(token, "nguyenvietan131024*0949521462**", {}, (err, user) => {
                 if (err) {
                     return res.json({error: "token expired"});
                 } else {
