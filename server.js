@@ -13,7 +13,7 @@ mongoose.connect("mongodb+srv://bcu:bcu1310@cluster0.zvpcl.mongodb.net/?retryWri
 .catch((err) => console.log('Database not connected', err))
 
 const corsOptions = {
-    origin: ["https://bcu-study-spaces-frontend.vercel.app", "http://localhost:3000"], // Replace with your client’s domain
+    origin: ["https://bcu-study-spaces-react.vercel.app", "http://localhost:3000"], // Replace with your client’s domain
     credentials: true,  // This allows cookies to be sent from the client
 };
 App.use(cors(corsOptions)); 
