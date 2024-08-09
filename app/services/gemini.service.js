@@ -41,8 +41,6 @@ module.exports = {
     
             const aiMove = JSON.parse(response);
     
-            console.log(aiMove);
-    
             return res.status(200).json(aiMove);
         } catch (error) {
             console.error("Error during AI move generation:", error);

@@ -12,4 +12,5 @@ module.exports = function (app) {
     require('./routes/like.route')(app);
     require('./routes/savedPost.route')(app);
     require('./routes/gemini.route')(app);
+    require('./routes/admin.route')(app);
 }

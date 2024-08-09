@@ -39,6 +39,17 @@ module.exports = {
         }
     },
 
+    getOnePost: async function (req, res) {
+        try {
+            const {postId} = req.query;
+            const post = await Posts.findOne({_id: postId})
+            return res.json(post)
+        } catch(error) {
+            console.log(error)
+            return res.status(400).json({error: "Something went wrong"});
+        }
+    },
+
     deletePost: async function (req, res) {
         try {
             const {postId} = req.query;

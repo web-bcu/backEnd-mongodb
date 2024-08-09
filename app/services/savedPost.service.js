@@ -35,6 +35,18 @@ module.exports = {
     //         console.log(error);
     //     }
     // }
+
+    getSavedPosts: async function (req, res) {
+        try {
+            const {userId} = req.query;
+            const allSavedPosts = await SavedPost.find({userId: userId});
+            return res.json(allSavedPosts)
+        } catch(error) {
+            console.log(error);
+            return res.status(400).json({error: "Something went wrong"});
+        }
+    },
+
     removeSavePost: async function (req, res) {
         try {
             const { postId, userId } = req.body;
